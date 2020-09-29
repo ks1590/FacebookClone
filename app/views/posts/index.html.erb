@@ -13,8 +13,9 @@
     <td><%= link_to '詳細を確認する', post_path(post.id) %></td>
     <td><%= link_to "ブログを編集する", edit_post_path(post.id) %></td>
     <td><%= link_to 'ブログを削除する', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= image_tag(post.image.url) if post.image && post.image.url %></td>
   </tr>
 <% end %>
-<%= image_tag(@post.image.url) if @post.image? %>
+
 </table>
 <%= link_to '新しくブログを投稿する', new_post_path %>

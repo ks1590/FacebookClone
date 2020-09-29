@@ -17,8 +17,8 @@ class PostsController < ApplicationController
   end
 
   def confirm
-    @blog = current_user.blogs.build(blog_params)
-    render :new if @blog.invalid?
+    @blog = current_user.blogs.build(post_params)
+    render :new if @post.invalid?
   end
 
   def show
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path, notice:"ブログを削除しました！"
   end
-  
+
   private
   def post_params
     params.require(:post).permit(:title, :content, :image, :image_cache)
