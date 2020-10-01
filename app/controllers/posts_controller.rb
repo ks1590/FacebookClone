@@ -17,8 +17,12 @@ class PostsController < ApplicationController
   end
 
   def confirm
-    @blog = current_user.blogs.build(post_params)
+    @post = current_user.blogs.build(post_params)
     render :new if @post.invalid?
+  end
+
+  def edit
+    @post = current_user.posts.build(post_params)
   end
 
   def show
@@ -46,6 +50,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :image, :image_cache)
+    params.permit(:title, :content, :image, :image_cache)
   end
 end

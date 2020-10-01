@@ -1,20 +1,32 @@
-<h1>ブログ一覧</h1>
 <p><%= notice %></p>
 <table>
   <tr>
     <th>タイトル</th>
     <th>内容</th>
   </tr>
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.content %></td>
-    <td><%= post.user.name %></td>
-    <td><%= link_to '詳細を確認する', post_path(post.id) %></td>
-    <td><%= link_to "ブログを編集する", edit_post_path(post.id) %></td>
-    <td><%= link_to 'ブログを削除する', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
-    <td><%= image_tag(post.image.url) if post.image && post.image.url %></td>
-  </tr>
+<% for post in @posts %>
+          <div class="panel panel-default post-panel">
+            <div class="panel-body row">
+                <div class= "col-sm-1">
+                    <img src="/avatar.png" height="40px" widht="40px">
+                </div>
+                <div class= "col-sm-11">
+                  <p class="post-content"><%= post.title %></p>
+                  <p class="post-content"><%= post.content %></p>
+                  <%= image_tag(post.image.url) if post.image && post.image.url %>
+                </div>
+                <div class= "col-sm-11">
+                  <div class="post-links">                    
+                      <%= link_to edit_post_path(post.id) do %>
+                          <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
+                      <% end %>
+                      <%= link_to post_path(post.id), method: :delete ,data: { confirm: '本当に削除してよろしいですか？' } do %>
+                          <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
+                      <% end %>                    
+                  </div>
+                </div>
+            </div>
+          </div>
 <% end %>
 
 </table>
