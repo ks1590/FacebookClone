@@ -13,14 +13,24 @@
       </div>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'ホームに戻る', posts_path %></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to '投稿する', new_post_path %></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'ホームに戻る', posts_path %></li>
+      </ul>
+      <% if logged_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
+          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "新しいアカウントを作成", new_user_path %></li>
+          <li><%= link_to "ログイン", new_session_path %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 </nav>
