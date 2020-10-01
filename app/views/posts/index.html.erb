@@ -1,14 +1,10 @@
 <p><%= notice %></p>
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-  </tr>
 <% for post in @posts %>
           <div class="panel panel-default post-panel">
             <div class="panel-body row">
                 <div class= "col-sm-1">
                     <img src="/avatar.png" height="40px" widht="40px">
+                    <%= post.user.name %>
                 </div>
                 <div class= "col-sm-11">
                   <p class="post-content"><%= post.title %></p>
@@ -28,6 +24,3 @@
             </div>
           </div>
 <% end %>
-
-</table>
-<%= link_to '新しくブログを投稿する', new_post_path %>
