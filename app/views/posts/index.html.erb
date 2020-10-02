@@ -4,14 +4,15 @@
     <div class="panel-body row">
         <div class= "col-sm-1">
           <img src="/avatar.png" height="40px" widht="40px">
+        </div>
+        <div class= "col-sm-1">
           <%= post.user.name %>
         </div>
-        <div class= "col-sm-11">
+        <div class= "col-sm-10">
           <p class="post-content"><%= post.title %></p>
           <p class="post-content"><%= post.content %></p>
           <%= image_tag(post.image.url) if post.image && post.image.url %>
-        </div>
-        <div class= "col-sm-11">
+        
           <div class="post-links">                    
             <%= link_to edit_post_path(post.id) do %>
                 <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
