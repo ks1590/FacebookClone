@@ -13,7 +13,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_limit: [600, 500]
+  process resize_to_limit: [500, 400]
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

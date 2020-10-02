@@ -9,13 +9,13 @@
       </ul>
     </div>
   <% end %>
-
     <%= f.text_field :title, class: 'form-control',:placeholder => "タイトル" %>  
     <%= f.text_field :content, class: 'form-control input-lg',:placeholder => "メッセージをシェアしよう"%>
+    <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
     <%= f.file_field(:image,{:class => 'btn-primary'})  %>
     <%= f.hidden_field :image_cache　%>
     <div class="text-right">
-    <%= f.submit("投稿する", class:"btn btn-primary") %>
-    <%= link_to '戻る', :back, class:"btn btn-warning" %>
+      <%= f.submit("投稿する", class:"btn btn-primary") %>
+      <%= link_to '戻る', :back, class:"btn btn-warning" %>
     <div>
 <% end %>
