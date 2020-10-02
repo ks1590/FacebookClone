@@ -1,32 +1,29 @@
 <div class="row">
-    <div class="col-md-6">
-        <ul class="media-list">
-            <li class="media">
-                <img class="media-object media-left　img-responsive"  src="/sns.jpg">
-            </li>
-        </ul>
-    </div>
-    <%# <img src = "/login.png" class = "login_img"> %>
-    <div class = "col-md-offset-1 col-md-5">
-        <% if @user.errors.any? %>
-            <div id="error_explanation">
-                <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
-                <ul>
-                    <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
-        
-        <%= form_with(model: @user, local: true) do |f| %>
-        <%= f.text_field :name ,class: "form-group form-control form-control-lg",:placeholder => "名前" %>
-        <%= f.email_field :email ,class: "form-group form-control form-control-lg",:placeholder => "メールアドレス" %>
-        <%= f.password_field :password ,class: "form-group form-control form-control-lg", :placeholder => "パスワード" %>
-        <%= f.password_field :password_confirmation, class: "form-group form-control form-control-lg", :placeholder => "パスワード（再入力）" %>
-        <%= f.submit "新しいアカウントを作成", class:"btn btn-primary btn-lg btn-block" %>
-        <% end %><hr>
-
-        <%= link_to "ログイン", new_session_path, class:"btn btn-success btn-lg btn-block"  %>
-    </div>
+	<div class="col-md-6">
+		<ul class="media-list">
+			<li class="media">
+				<img class="media-object media-left　img-responsive"  src="/sns.jpg">
+			</li>
+		</ul>
+	</div>
+	<div class = "col-md-offset-1 col-md-5">
+		<% if @user.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+				<ul>
+					<% @user.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<%= form_with(model: @user, local: true) do |f| %>
+			<%= f.text_field :name ,class: "form-group form-control form-control-lg",:placeholder => "名前" %>
+			<%= f.email_field :email ,class: "form-group form-control form-control-lg",:placeholder => "メールアドレス" %>
+			<%= f.password_field :password ,class: "form-group form-control form-control-lg", :placeholder => "パスワード" %>
+			<%= f.password_field :password_confirmation, class: "form-group form-control form-control-lg", :placeholder => "パスワード（再入力）" %>
+			<%= f.submit "新しいアカウントを作成", class:"btn btn-primary btn-lg btn-block" %>
+		<% end %><hr>
+		<%= link_to "ログイン", new_session_path, class:"btn btn-success btn-lg btn-block"  %>
+	</div>
 </div>
