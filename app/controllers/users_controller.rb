@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only: [:edit, :update, :show]}
+
   def new
     @user = User.new
   end
@@ -12,10 +14,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    if @user != current_user
+        redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
+  end
+  
+
   def show
     @user = User.find(params[:id])    
   end
-  
 
   private
   def user_params

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user, {only: [:new, :create, :edit, :confirm, :update, :show, :destroy]}
   def index
     @posts = Post.all
   end
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notice: "投稿しました！"
+      redirect_to posts_path
     else
       render :new
     end
@@ -27,6 +28,9 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user != current_user
+      redirect_to posts_path
+    end
   end
 
   def show
@@ -36,7 +40,7 @@ class PostsController < ApplicationController
   def update
     @post = current_user.posts.build(post_params)
     if @post.update(post_params)
-      redirect_to posts_path, notice: "投稿内容を編集しました！"
+      redirect_to posts_path
     else
       render :edit
     end
@@ -45,7 +49,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice:"投稿を削除しました！"
+    redirect_to posts_path
   end
 
   private
