@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:edit, :update, :show]}
+  # before_action :authenticate_user, {only: [:edit, :update]}
 
   def new
     @user = User.new
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to user_path(@user.id)
+      session[:user_id] = @user.id
     else
       render :new
     end
@@ -21,9 +22,8 @@ class UsersController < ApplicationController
     end
   end
   
-
   def show
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id]) 
   end
 
   private

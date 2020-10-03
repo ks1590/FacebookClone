@@ -12,14 +12,16 @@
         <p class="post-content"><%= post.title %></p>
         <p class="post-content"><%= post.content %></p>
         <%= image_tag(post.image.url) if post.image && post.image.url %>
-        <div class="post-links">                    
-          <%= link_to edit_post_path(post.id) do %>
-              <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
-          <% end %>
-          <%= link_to post_path(post.id), method: :delete ,data: { confirm: '本当に削除してよろしいですか？' } do %>
-              <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
-          <% end %>                    
-        </div>
+        <% if post.user.id == current_user.id %>
+          <div class="post-links">                    
+            <%= link_to edit_post_path(post.id) do %>
+                <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
+            <% end %>
+            <%= link_to post_path(post.id), method: :delete ,data: { confirm: '本当に削除してよろしいですか？' } do %>
+                <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
+            <% end %>        
+          </div>
+        <% end %>                           
       </div>
     </div>
   </div>
